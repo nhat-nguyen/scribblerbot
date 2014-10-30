@@ -1,7 +1,7 @@
 #from myro import *
 #init("/dev/tty.IPRE6-197621-DevB")
 
-def is_clear(r = 900, orient="center"):
+def is_clear(r=900, orient="center"):
     n = 0
     x = 10
     for i in range(x):
