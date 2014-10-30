@@ -13,10 +13,10 @@ def is_clear(rang=1000, orient="center"):
         return False
 
 def go(v=0.2):#ok
-    while(is_clear(1000)):
+    while(is_clear(1100)):
         forward(v)
     stop()
-    #forward(0.1, 0.5)
+    forward(0.1, 0.3)
 
 def turn_clear_R(v=0.2):
     while(not is_clear()):#enter range, orientation, sample
@@ -39,45 +39,48 @@ def turn_block_L(v=0.2):
     stop()
 
 def turn_corner(v=0.3):
-    while(is_clear(600, "right")):#enter range, orientation, sample
+    while(is_clear(700, "right")):#enter range, orientation, sample
         motors(v, 0.1)
     stop()
 
 def turn_R():
-    turnRight(0.2, 1.2)
+    turnRight(0.2, 1.4)
     stop()
 
 def turn_L():
-    turnLeft(0.2, 1.2)
+    turnLeft(0.2, 1.4)
     stop()
 
-setName("retarded")
+setName("shit")
 count = 0
 go()
 turn_clear_L()
 turn_R()
-while(not is_clear()):
+while(not is_clear(1000, "right")):
     turn_L()
     forward(0.5, 0.5)
     turn_clear_L()
     turn_R()
+    backward(0.1, 0.2)
     count += 1
 backward(0.1, 0.2)
 turn_L()
 turn_L()
 turn_corner()
-while(not is_clear()):
+while(not is_clear(1000, "right")):
     turn_L()
     forward(0.5, 0.5)
     turn_clear_L()
     turn_R()
+    backward(0.1, 0.2)
 backward(0.1, 0.2)
 turn_L()
 turn_L()
 turn_corner()
 turn_clear_L()
-for i in range(count):
+for i in range(count - 1):
     forward(0.5, 0.5)
-turn_clear_L
+turn_clear_L()
 turnLeft(0.3, 2.4)
+forward(1, 2)
 beep(2, 440)
