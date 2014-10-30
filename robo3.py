@@ -1,5 +1,5 @@
-#from myro import *
-#init("/dev/tty.IPRE6-197621-DevB")
+from myro import *
+init("/dev/tty.IPRE6-197621-DevB")
 
 def is_clear(r=900, orient="center"):
     n = 0
@@ -11,7 +11,6 @@ def is_clear(r=900, orient="center"):
         return True
     else:
         return False
-
 def go():
     while(is_clear(1100)):
         forward(0.5)

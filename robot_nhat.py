@@ -37,10 +37,12 @@ def rotate45():
 	return 1
 
 def rotate90CW():
-	turnRight(0.3, 2.4)
+	# turnRight(0.3, 2.4)
+	turnRight(0.55, 1)
 
 def rotate90CCW():
-	turnLeft(0.3, 2.4)
+	# turnLeft(0.3, 2.4)
+	turnLeft(0.55, 1)
 
 def moveForward(steps):
 	forward(0.1, 1)
@@ -71,27 +73,22 @@ while (timeRemaining(10)):
 		rotate90CW() # rotate to the other sides
 		forward(1, 1) # move fast to get pass the edges of the sides
 
-		if origin == 1:
-			for i in range(0, distance):
-				forward(0.1, 1)
-			turnLeft(0.3, 1.2)
 
-		else:
-			rotate90CW() # check for obstacle to the right
+		rotate90CW() # check for obstacle to the right
 
-			while obstaclesUpFront():
-				rotate90CCW()
-				forward(0.5, 1)
-				rotate90CW()
-
+		while obstaclesUpFront():
 			rotate90CCW()
-			forward(0.5, 1) # to avoid the edges
+			forward(0.5, 1)
 			rotate90CW()
 
-			for i in range(0, distance):
-				forward(0.1, 1)
-	
-			rotate90CCW()
+		rotate90CCW()
+		forward(0.5, 1) # to avoid the edges
+		rotate90CW()
+
+		for i in range(0, distance):
+			forward(0.1, 1)
+
+		rotate90CCW()
 
 	forward(0.1)
 
