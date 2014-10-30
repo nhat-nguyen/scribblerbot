@@ -14,25 +14,17 @@ def go(v=0.5):
     stop()
     forward(0.1, 1)
 
-def turn_clear(direct="R", v=0.2):
-    if(direct="R"):
-        while(not is_clear()):#enter range, orientation, sample
-            turnRight(v)
-    elif(direct="L"):
-        while(not is_clear()):
-            turnLeft(v)
+def turn_clear_R(v=0.2):
+    while(not is_clear()):#enter range, orientation, sample
+        turnRight(v)
     stop()
 
-def turn_block(direct="R", v=0.2):
-    if(direct="R"):
-        while(is_clear()):#enter range, orientation, sample
-            turnRight(v)
-    elif(direct="L"):
-        while(is_clear()):
-            turnLeft(v)
-    stop()
-
-def turn_corner():
+def turn_block(v=0.2):
     while(is_clear()):#enter range, orientation, sample
-        motors(0.3, 0)
+        turnRight(v)
+    stop()
+
+def turn_corner(v=0.3):
+    while(is_clear()):#enter range, orientation, sample
+        motors(v, 0)
     stop()
