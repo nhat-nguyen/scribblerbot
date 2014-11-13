@@ -1,65 +1,68 @@
 from random import *
 from collections import deque
+def bfs (start,stop):
+        graph = [[0]*8 for _ in range (8)]
 
-graph = [[0]*8 for _ in range (8)]
+        #start = (randint(0, 7), randint(0, 7))
+        #stop = (randint(0, 7), randint(0, 7))
 
-start = (randint(0, 7), randint(0, 7))
-stop = (randint(0, 7), randint(0, 7))
+        print "Start: ", start
+        print "Stop: ", stop
 
-print "Start: ", start
-print "Stop: ", stop
+        print "------------------------------\n"
 
-print "------------------------------\n"
+        frontier = deque([start])	#can efficiently pop from both ends of the list
+        came_from = {}
 
-frontier = deque([start])	#can efficiently pop from both ends of the list
-came_from = {}
+        stopFind = False
+        graph[start[0]][start[1]] = 1
 
-stopFind = False
-graph[start[0]][start[1]] = 1
+        while len(frontier) > 0:
+                # directions that the knight can move
+                movement = []
+                pos = frontier.popleft()  #dequeue operation (not to be confused with deque data structure in python)
 
-while len(frontier) > 0:
-	# directions that the knight can move
-	movement = []
-	pos = frontier.popleft()  #dequeue operation (not to be confused with deque data structure in python)
+                #checks all knight's moves from first item in queue
+                for i in range (-2,3):
+                        for j in range(-2,3):
+                                if abs(i)+abs(j)==3:
+                                        movement.append((pos[0]+i,pos[1]+j))
 
-	#checks all knight's moves from first item in queue
-	for i in range (-2,3):
-		for j in range(-2,3):
-			if abs(i)+abs(j)==3:
-				movement.append((pos[0]+i,pos[1]+j))
+                for i in movement:
+                        # check only the valid movement
+                        if 0 <= i[0] < 8 and 0 <= i[1] < 8:
+                                if not graph[i[0]][i[1]]:
+                                        graph[i[0]][i[1]] = graph[pos[0]][pos[1]]+1
+                                        if i == stop:
+                                                stopFind = True
+                                        frontier.append(i)   #enqueue operation
+                                        came_from[i] = pos   #could not have come from i if has not been visited yet; already checked with if statement
+                                        if stopFind:
+                                                break
+                if stopFind:
+                        break
 
-	for i in movement:
-		# check only the valid movement
-		if 0 <= i[0] < 8 and 0 <= i[1] < 8:
-			if not graph[i[0]][i[1]]:
-				graph[i[0]][i[1]] = graph[pos[0]][pos[1]]+1
-				if i == stop:
-					stopFind = True
-				frontier.append(i)   #enqueue operation
-				came_from[i] = pos   #could not have come from i if has not been visited yet; already checked with if statement
-				if stopFind:
-					break
-	if stopFind:
-		break
+        #complete graph with all possible moves and move numbers from start stop
+        for i in range(8):
+                print ' '.join(map(str,graph[i]))
 
-#complete graph with all possible moves and move numbers from start stop
-for i in range(8):
-        print ' '.join(map(str,graph[i]))
+        current = stop
+        steps = [current]
+        while current != start:
+                current = came_from[current]
+                steps.append(current)
 
-current = stop
-steps = [current]
-while current != start:
-	current = came_from[current]
-	steps.append(current)
+        print "\n------------------------------\n"
 
-print "\n------------------------------\n"
+        #list of moves from start to stop
+        for i in reversed (range(len(steps))):
+                print steps[i]
 
-#list of moves from start to stop
-for i in reversed (range(len(steps))):
-	print steps[i]
+        print "\n------------------------------\n"
 
-print "\n------------------------------\n"
+        #shows moves and move numbers to go from start to stop
+        for i in range (8):
+                print ' '.join(map(lambda x: str(graph[i][x] * int((i,x) in steps)),range(8)))
 
-#shows moves and move numbers to go from start to stop
-for i in range (8):
-	print ' '.join(map(lambda x: str(graph[i][x] * int((i,x) in steps)),range(8)))
+        return steps
+
