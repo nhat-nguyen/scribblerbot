@@ -38,11 +38,11 @@ def rotate45():
 
 def rotate90CW():
 	# turnRight(0.3, 2.4)
-	turnRight(0.55, 1)
+	turnRight(0.6, 1)
 
 def rotate90CCW():
 	# turnLeft(0.3, 2.4)
-	turnLeft(0.55, 1)
+	turnLeft(0.6, 1)
 
 def moveForward(steps):
 	forward(0.1, 1)
@@ -52,8 +52,11 @@ def moveForward(steps):
 distance = 1
 
 while (timeRemaining(10)):
+	while not obstaclesUpFront():
+		forward(0.5, 1)
+		
 	if obstaclesUpFront():
-		origin = rotate45()
+		rotate90CCW()
 		beingBlocked = True
 
 		while beingBlocked:
