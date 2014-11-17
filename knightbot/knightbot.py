@@ -20,7 +20,7 @@ class knightBot:
 
 	def newButton(self, x, y, window):
 		button = ttk.Button(window, text = str(x) + ', ' + str(y), command = lambda: self.add((x, y)))
-		button.grid(row = x + 1, column = y)
+		button.grid(row = x +1, column = y)
 		return button
 
 	def add(self, point):

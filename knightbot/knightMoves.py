@@ -3,26 +3,28 @@ from bfs import bfs
 init("/dev/tty.IPRE6-197621-DevB")
 
 def rightNinety():
-	turnRight(0.5, 1.15)
+	# turnRight(0.5, 1.15)
+	turnRight(0.3, 2.1)
 
 def leftNinety():
-	turnLeft(0.5, 1.15)
+	turnLeft(0.3, 2.1)
 
 def getLines():
 	return sum(get('line'))
 
 def moveForward():
-	while (getLines() >= 1):
-		forward(0.1)
-	else:
-		stop()
+	# while (getLines() >= 1):
+	# 	forward(0.1)
+	# else:
+	# 	stop()
+	forward(0.3, 1.5)
 
 def knightBlocks(f, n):
 	while(n != 0):
 		f()
 		n -= 1
 		# if (n != 0): forward(0.1, 1)
-		backward(0.1,1)
+		# if (d): backward(0.1,1.28)
 
 
 def knightMoves(i, j):
@@ -46,9 +48,8 @@ def knightMoves(i, j):
 			rightNinety()
 		knightBlocks(moveForward, abs(j))
 		rightNinety()
-
-knightBlocks(moveForward,1)
-rightNinety()
+knightMoves(1,2)
+# rightNinety()
 
 # start = (0,0)
 # while (True):
