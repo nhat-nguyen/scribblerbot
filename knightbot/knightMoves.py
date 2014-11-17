@@ -21,7 +21,9 @@ def knightBlocks(f, n):
 	while(n != 0):
 		f()
 		n -= 1
-		forward(0.1, 1)
+		# if (n != 0): forward(0.1, 1)
+		backward(0.1,1)
+
 
 def knightMoves(i, j):
 	if (i > 0):
@@ -46,8 +48,7 @@ def knightMoves(i, j):
 		rightNinety()
 
 knightBlocks(moveForward,1)
-
-#rightNinety()
+rightNinety()
 
 # start = (0,0)
 # while (True):
