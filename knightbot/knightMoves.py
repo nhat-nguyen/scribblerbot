@@ -48,7 +48,8 @@ def knightMoves(i, j):
 			rightNinety()
 		knightBlocks(moveForward, abs(j))
 		rightNinety()
-knightMoves(1,2)
+	beep(1, 440)
+# knightMoves(1,2)
 # rightNinety()
 
 # start = (0,0)
