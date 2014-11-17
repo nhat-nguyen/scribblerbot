@@ -1,6 +1,8 @@
 import Tkinter as tk
 import ttk
 from bfs import *
+from knightMoves import *
+
 
 class knightBot:
 	def redrawButtons(self, window):
@@ -37,6 +39,14 @@ class knightBot:
 	def halt(self):
 		stop()
 
+	def startMoves(self):
+		steps = bfs(self.points[0], self.points[1])
+		start = steps[0]
+		for cur in steps[1:]:
+			delta = (cur[0]-start[0],cur[1]-start[1])
+			knightMoves(delta[0], delta[1])
+			start = cur
+
 	def compute(self, list):
 		route = []
 		results = []
@@ -70,7 +80,7 @@ class knightBot:
 			for y in range(8):
 				(self.buttons[x]).append(self.newButton(x, y, window))
 
-		self.start = ttk.Button(window, text = 'Start', command = lambda: self.add('.'), width = 9).grid(row = 1, column = 9, padx = 20)
+		self.start = ttk.Button(window, text = 'Start', command = lambda: self.startMoves(), width = 9).grid(row = 1, column = 9, padx = 20)
 		self.halt = ttk.Button(window, text = 'Stop', command = lambda: self.halt(), width = 9).grid(row = 2, column = 9, padx = 20)
 		self.steps = ttk.Button(window, text = 'Compute', command = lambda: self.compute(self.points), width = 9).grid(row = 3, column = 9, padx = 20)
 		self.showResults = ttk.Button(window, text = 'Results', command = lambda: self.output(), width = 9).grid(row = 4, column = 9, padx = 20)

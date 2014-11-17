@@ -1,4 +1,5 @@
 from myro import *
+from bfs import bfs
 init("/dev/tty.IPRE6-197621-DevB")
 
 def rightNinety():
@@ -16,11 +17,6 @@ def moveForward():
 	else:
 		stop()
 
-def moveBackward():
-	rightNinety()
-	rightNinety()
-	moveForward()
-
 def knightBlocks(f, n):
 	while(n != 0):
 		f()
@@ -31,18 +27,33 @@ def knightMoves(i, j):
 	if (i > 0):
 		knightBlocks(moveForward, abs(i))
 	if (i < 0):
-		knightBlocks(moveBackward, abs(i))
-	if (j > 0):
+		rightNinety()
+		rightNinety()
+		knightBlocks(moveForward, abs(i))
+	if (j < 0):
 		if (i < 0):
 			leftNinety()
 		else:
 			rightNinety()
 		knightBlocks(moveForward, abs(j))
 		leftNinety()
-	if (j < 0):
+	if (j > 0):
 		if (i > 0):
 			leftNinety()
 		else:
 			rightNinety()
 		knightBlocks(moveForward, abs(j))
 		rightNinety()
+
+knightBlocks(moveForward,1)
+
+#rightNinety()
+
+# start = (0,0)
+# while (True):
+# 	end = (input(),input())
+# 	steps = bfs(start,end)
+# 	for cur in steps[1:]:
+# 		delta = (cur[0]-start[0],cur[1]-start[1])
+# 		knightMoves(delta)
+# 		start = cur
