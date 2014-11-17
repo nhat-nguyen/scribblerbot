@@ -3,7 +3,6 @@ import ttk
 from bfs import *
 from knightMoves import *
 
-
 class knightBot:
 	def redrawButtons(self, window):
 		for x in range(0, 8):
@@ -35,9 +34,6 @@ class knightBot:
 		self.textbox.delete(0, tk.END)
 		if rmPoint:
 			del self.points[:]
-
-	def halt(self):
-		stop()
 
 	def startMoves(self):
 		steps = bfs(self.points[0], self.points[1])
@@ -81,10 +77,8 @@ class knightBot:
 				(self.buttons[x]).append(self.newButton(x, y, window))
 
 		self.start = ttk.Button(window, text = 'Start', command = lambda: self.startMoves(), width = 9).grid(row = 1, column = 9, padx = 20)
-		self.halt = ttk.Button(window, text = 'Stop', command = lambda: self.halt(), width = 9).grid(row = 2, column = 9, padx = 20)
-		self.steps = ttk.Button(window, text = 'Compute', command = lambda: self.compute(self.points), width = 9).grid(row = 3, column = 9, padx = 20)
-		self.showResults = ttk.Button(window, text = 'Results', command = lambda: self.output(), width = 9).grid(row = 4, column = 9, padx = 20)
-		self.clearPoints = ttk.Button(window, text = 'Clear', command = lambda: self.clear(True, window), width = 9).grid(row = 5, column = 9, padx = 20)
+		self.steps = ttk.Button(window, text = 'Compute', command = lambda: self.compute(self.points), width = 9).grid(row = 2, column = 9, padx = 20)
+		self.clearPoints = ttk.Button(window, text = 'Clear', command = lambda: self.clear(True, window), width = 9).grid(row = 3, column = 9, padx = 20)
 
 root = tk.Tk()
 
