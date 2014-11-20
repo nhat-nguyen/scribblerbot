@@ -5,13 +5,13 @@ from knightMoves import *
 
 class knightBot:
 	def redrawButtons(self, window):
-		for x in range(0, 8):
-			for y in range(8):
+		for x in range(6):
+			for y in range(6):
 				self.buttons[x][y].config(text = str(x) + ', ' + str(y))
 
 	def clearButtons(self):
-		for i in range(8):
-			for j in range(8):
+		for i in range(6):
+			for j in range(6):
 				self.buttons[i][j].config(text = "")
 
 	def insertTextBox(self, something):
@@ -19,7 +19,7 @@ class knightBot:
 
 	def newButton(self, x, y, window):
 		button = ttk.Button(window, text = str(x) + ', ' + str(y), command = lambda: self.add((x, y)))
-		button.grid(row = x +1, column = y)
+		button.grid(row = x + 1, column = y)
 		return button
 
 	def add(self, point):
@@ -36,24 +36,24 @@ class knightBot:
 			del self.points[:]
 
 	def startMoves(self):
-		steps = bfs(self.points[0], self.points[1])
-		start = steps[0]
-		for cur in steps[1:]:
-			delta = (cur[0]-start[0],cur[1]-start[1])
-			knightMoves(delta[0], delta[1])
-			start = cur
+		while len(self.points) > 1:
+			steps = bfs(self.points[0], self.points[1])
+			start = steps[0]
+			for cur in steps[1:]:
+				delta = (cur[0]-start[0],cur[1]-start[1])
+				knightMoves(delta[0], delta[1])
+				start = cur
+			del self.points[0]
 
 	def compute(self, list):
 		route = []
 		results = []
 		self.textbox.delete(0, tk.END)
 		route.extend(bfs(list[0], list[1]))
-
 		for i in range(1, len(list) - 1):
 			results = bfs(list[i], list[i + 1])
 			route.extend(results[1:])
-
-		j = 1
+		j = 0
 		self.clearButtons()
 		label = dict((i, '') for i in route)
 
@@ -64,7 +64,7 @@ class knightBot:
 		self.insertTextBox(str(route))
 
 	def __init__(self, master):
-		self.buttons = [[] for i in range(8)]
+		self.buttons = [[] for i in range(6)]
 		self.points = []
 		window = tk.Frame(master, bg = "#ececec")		
 		window.pack()
@@ -72,8 +72,8 @@ class knightBot:
 		self.textbox = tk.Entry(window, width = 770, bg = "white", textvariable = self.input)
 		self.textbox.grid(row = 0, columnspan = 1000)
 
-		for x in range(8):
-			for y in range(8):
+		for x in range(6):
+			for y in range(6):
 				(self.buttons[x]).append(self.newButton(x, y, window))
 
 		self.start = ttk.Button(window, text = 'Start', command = lambda: self.startMoves(), width = 9).grid(row = 1, column = 9, padx = 20)

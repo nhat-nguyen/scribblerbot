@@ -4,10 +4,14 @@ init("/dev/tty.IPRE6-197621-DevB")
 
 def rightNinety():
 	# turnRight(0.5, 1.15)
-	turnRight(0.3, 2.1)
+	# turnRight(0.3, 2.1)
+	turnRight(0.25, 3.05)
+
 
 def leftNinety():
-	turnLeft(0.3, 2.1)
+	# turnLeft(0.3, 2.1)
+	turnLeft(0.25, 3.05)
+
 
 def getLines():
 	return sum(get('line'))
@@ -17,7 +21,7 @@ def moveForward():
 	# 	forward(0.1)
 	# else:
 	# 	stop()
-	forward(0.3, 1.5)
+	forward(0.6, 1.05)
 
 def knightBlocks(f, n):
 	while(n != 0):

@@ -1,7 +1,7 @@
 from random import *
 from collections import deque
 def bfs (start, stop):
-    graph = [[0]*8 for _ in range (8)]
+    graph = [[0]*6 for _ in range (6)]
 
     #start = (randint(0, 7), randint(0, 7))
     #stop = (randint(0, 7), randint(0, 7))
@@ -29,7 +29,7 @@ def bfs (start, stop):
 
         for i in movement:
             # check only the valid movement
-            if 0 <= i[0] < 8 and 0 <= i[1] < 8:
+            if 0 <= i[0] < 6 and 0 <= i[1] < 6:
                 if not graph[i[0]][i[1]]:
                     graph[i[0]][i[1]] = graph[pos[0]][pos[1]]+1
                     if i == stop:
@@ -47,7 +47,7 @@ def bfs (start, stop):
 
     #complete graph with all possible moves and move numbers from start stop
     # currently not needed !
-    # for i in range(8):
+    # for i in range(6):
     #         print ' '.join(map(str,graph[i]))
 
     current = stop
@@ -68,7 +68,7 @@ def bfs (start, stop):
     # print "------------------------------"
 
     #shows moves and move numbers to go from start to stop
-    # for i in range (8):
+    # for i in range (6):
     #     print ' '.join(map(lambda x: str(graph[i][x] * int((i,x) in steps)),range(8)))
 
     # print "------------------------------"
